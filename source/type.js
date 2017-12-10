@@ -75,7 +75,7 @@ class Type {
 	 *  @memberof  Type
 	 */
 	static getTypeName(value, real=true) {
-		const type = value instanceof Array ? 'array' : typeof value;
+		const type = Array.isArray(value) ? 'array' : typeof value;
 
 		if (value === null) {
 			return 'null';
