@@ -7,9 +7,16 @@
     "test": "lab -vclr",
     "test-coverage-html": "lab -clr html -o report.html"
   },
-  "keywords": [],
+  "keywords": [
+    "type",
+    "typeof",
+    "instanceof",
+    "type name",
+    "object name",
+    "function name"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@konfirm/labrat": "^1.1.0"
   }
