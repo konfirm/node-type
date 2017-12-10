@@ -6,7 +6,6 @@ const mapping = [
 	{ map: 'boolean',   types: [ Boolean,   'Boolean' ] },
 	{ map: 'function',  types: [ Function,  'Function' ] },
 	{ map: 'array',     types: [ Array,     'Array' ]},
-	{ map: RegExp,      types: [            'RegExp' ] },
 ];
 
 class Type {
@@ -96,7 +95,8 @@ class Type {
 	static instanceOf(type, value) {
 		const check = this.resolveMapping(type, 'object');
 
-		return this.is(check, value) && (check !== 'object' || value instanceof type);
+		return this.is(check, value) &&
+			(check !== 'object' || (this.is('string', type) ? this.is(type, value) : value instanceof type));
 	}
 
 	/**
