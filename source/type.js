@@ -19,8 +19,11 @@ const mapping = [
 class Type {
 	/**
 	 *  Get the function name
-	 *  @param   {Function}  value
-	 *  @return  {String}    name
+	 *
+	 *  @static
+	 *  @param     {Function}  value
+	 *  @return    {String}    name
+	 *  @memberof  Type
 	 */
 	static functionName(value) {
 		const match = String(value).match(/^function\s([^\s\(]+)/);
@@ -30,8 +33,11 @@ class Type {
 
 	/**
 	 *  Get the object name
-	 *  @param   {Object|*}  value
-	 *  @return  {String}    name
+	 *
+	 *  @static
+	 *  @param     {Object|*}  value
+	 *  @return    {String}    name
+	 *  @memberof  Type
 	 */
 	static objectName(value) {
 		let constructor = null;
@@ -55,9 +61,12 @@ class Type {
 
 	/**
 	 *  Get the type name
-	 *  @param   {*}        value
-	 *  @param   {Boolean}  [real=true]
-	 *  @return  {String}   name
+	 *
+	 *  @static
+	 *  @param     {any}      value
+	 *  @param     {Boolean}  [real=true]
+	 *  @return    {String}   name
+	 *  @memberof  Type
 	 */
 	static getTypeName(value, real=true) {
 		const type = value instanceof Array ? 'array' : typeof value;
@@ -71,9 +80,12 @@ class Type {
 
 	/**
 	 *  Determine whether the value is an instance of a specific type
-	 *  @param   {*}       type
-	 *  @param   {*}       value
-	 *  @return  {String}  name
+	 *
+	 *  @static
+	 *  @param     {any}     type
+	 *  @param     {any}     value
+	 *  @return    {String}  name
+	 *  @memberof  Type
 	 */
 	static instanceOf(type, value) {
 		const check = mapping.reduce((carry, it) => it.type === type ? it.map : carry, 'object');
@@ -83,9 +95,12 @@ class Type {
 
 	/**
 	 *  Is the value of specific type
-	 *  @param   {*}        type
-	 *  @param   {*}        value
-	 *  @return  {Boolean}  is type
+	 *
+	 *  @static
+	 *  @param     {any}      type
+	 *  @param     {any}      value
+	 *  @return    {Boolean}  is type
+	 *  @memberof  Type
 	 */
 	static is(type, value) {
 		if (this.getTypeName(type) === 'string') {
