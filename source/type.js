@@ -32,9 +32,9 @@ class Type {
 	 *  @memberof  Type
 	 */
 	static functionName(value) {
-		const match = String(value).match(/^function\s([^\s\(]+)/);
+		const [ _, match ] = String(value).match(/^function\s([^\s\(]+)/) || [];
 
-		return match ? match[1] : undefined;
+		return match;
 	}
 
 	/**
