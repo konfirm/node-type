@@ -66,11 +66,7 @@ class Type {
 	 *  @memberof  Type
 	 */
 	static getTypeName(value, real=true) {
-		const type = Array.isArray(value) ? 'array' : typeof value;
-
-		if (value === null) {
-			return 'null';
-		}
+		const type = Array.isArray(value) ? 'array' : (value === null ? 'null' : typeof value);
 
 		return /^(?:object|function)$/i.test(type) && real ? this.objectName(value) : type;
 	}
