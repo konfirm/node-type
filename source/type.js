@@ -18,6 +18,19 @@ const mapping = [
 
 class Type {
 	/**
+	 *  Resolve any predefined mapping for the given type input
+	 *
+	 *  @static
+	 *  @param     {any}  type
+	 *  @param     {any}  [begin=undefined]
+	 *  @return    {any}  mapped
+	 *  @memberof  Type
+	 */
+	static resolveMapping(type, begin) {
+		return mapping.reduce((carry, item) => item.type === type ? item.map : carry, begin);
+	}
+
+	/**
 	 *  Get the function name
 	 *
 	 *  @static
@@ -88,7 +101,7 @@ class Type {
 	 *  @memberof  Type
 	 */
 	static instanceOf(type, value) {
-		const check = mapping.reduce((carry, it) => it.type === type ? it.map : carry, 'object');
+		const check = this.resolveMapping(type, 'object');
 
 		return this.is(check, value) && (check !== 'object' || value instanceof type);
 	}
@@ -104,9 +117,9 @@ class Type {
 	 */
 	static is(type, value) {
 		if (this.getTypeName(type) === 'string') {
-			type = mapping.reduce((carry, it) => it.type === type ? it.map : carry, type);
+			const check = this.resolveMapping(type, type);
 
-			return this.getTypeName(value, false) === type || this.getTypeName(value, true) === type;
+			return this.getTypeName(value, false) === check || this.getTypeName(value, true) === check;
 		}
 
 		return this.instanceOf(type, value);
