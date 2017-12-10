@@ -45,23 +45,15 @@ class Type {
 	 *  @memberof  Type
 	 */
 	static objectName(value) {
-		let constructor = null;
+		const check = this.resolveMapping(value);
 
-		if (value === null) {
-			constructor = 'null';
-		}
-		else if (value === undefined) {
-			constructor = 'undefined';
-		}
-		else {
-			constructor = String(value.constructor.name);
+		if (check && /^null|undefined$/.test(check)) {
+			return check;
 		}
 
-		if (/function/i.test(constructor)) {
-			return this.functionName(value);
-		}
+		const constructor = String(value.constructor.name);
 
-		return constructor;
+		return /function/i.test(constructor) ? this.functionName(value) : constructor;
 	}
 
 	/**
