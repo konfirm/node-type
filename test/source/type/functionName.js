@@ -6,20 +6,22 @@ function foo() {}
 function bar() {}
 
 describe('Type.functionName', () => {
-	it('identifies String', (next) => {
-		expect(Type.functionName(String)).to.equal('String');
+	it('identifies built-in constructors', (next) => {
+		const builtin = {
+			String,
+			Number,
+			Boolean,
+			Object,
+			Array,
+			Date,
+			RegExp,
+			Symbol,
+			Map,
+			WeakMap,
+			Promise,
+		};
 
-		next();
-	});
-
-	it('identifies Number', (next) => {
-		expect(Type.functionName(Number)).to.equal('Number');
-
-		next();
-	});
-
-	it('identifies Boolean', (next) => {
-		expect(Type.functionName(Boolean)).to.equal('Boolean');
+		Object.keys(builtin).forEach((name) => expect(Type.functionName(builtin[name])).to.equal(name));
 
 		next();
 	});
