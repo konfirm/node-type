@@ -1,19 +1,12 @@
 const mapping = [
-	{ type: null, map: 'null' },
-	{ type: 'null', map: 'null' },
-	{ type: undefined, map: 'undefined' },
-	{ type: 'undefined', map: 'undefined' },
-	{ type: String, map: 'string' },
-	{ type: 'String', map: 'string' },
-	{ type: Number, map: 'number' },
-	{ type: 'Number', map: 'number' },
-	{ type: Boolean, map: 'boolean' },
-	{ type: 'Boolean', map: 'boolean' },
-	{ type: Function, map: 'function' },
-	{ type: 'Function', map: 'function' },
-	{ type: Array, map: 'array' },
-	{ type: 'Array', map: 'array' },
-	{ type: 'RegExp', map: RegExp },
+	{ map: 'null',      types: [ null,      'null' ] },
+	{ map: 'undefined', types: [ undefined, 'undefined' ] },
+	{ map: 'string',    types: [ String,    'String' ] },
+	{ map: 'number',    types: [ Number,    'Number' ] },
+	{ map: 'boolean',   types: [ Boolean,   'Boolean' ] },
+	{ map: 'function',  types: [ Function,  'Function' ] },
+	{ map: 'array',     types: [ Array,     'Array' ]},
+	{ map: RegExp,      types: [            'RegExp' ] },
 ];
 
 class Type {
@@ -27,7 +20,7 @@ class Type {
 	 *  @memberof  Type
 	 */
 	static resolveMapping(type, begin) {
-		return mapping.reduce((carry, item) => item.type === type ? item.map : carry, begin);
+		return mapping.reduce((carry, item) => item.types.indexOf(type) >= 0 ? item.map : carry, begin);
 	}
 
 	/**
