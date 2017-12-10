@@ -1,0 +1,16 @@
+{
+  "name": "@konfirm/type",
+  "version": "1.0.0",
+  "description": "Variable type comparison",
+  "main": "source/type.js",
+  "scripts": {
+    "test": "lab -vclr",
+    "test-coverage-html": "lab -clr html -o report.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@konfirm/labrat": "^1.1.0"
+  }
+}
