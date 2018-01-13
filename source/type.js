@@ -10,7 +10,7 @@ class Type {
 	 *  @memberof  Type
 	 */
 	static functionName(value) {
-		const [ _, match ] = String(value).match(/^function\s([^\s\(]+)/) || [];
+		const [ , match ] = String(value).match(/^function\s+([^\s(]+)/) || [];
 
 		return match;
 	}
@@ -44,8 +44,9 @@ class Type {
 	 *  @return    {String}   name
 	 *  @memberof  Type
 	 */
-	static getTypeName(value, real=true) {
-		const type = Array.isArray(value) ? 'array' : (value === null ? 'null' : typeof value);
+	static getTypeName(value, real = true) {
+		const type = [ Array.isArray(value) ? 'array' : null, value === null ? 'null' : null ]
+			.reduce((carry, name) => name || carry, typeof value);
 
 		return /^(?:object|function)$/i.test(type) && real ? this.objectName(value) : type;
 	}

@@ -2,8 +2,18 @@
 
 const Type = source('type');
 
-function foo() {}
-function bar() {}
+function foo() {
+	//  intentionally left blank
+}
+function bar() {
+	//  intentionally left blank
+}
+function Foo() {
+	//  intentionally left blank
+}
+function Bar() {
+	//  intentionally left blank
+}
 
 describe('Type.getTypeName', () => {
 	it('identifies String', (next) => {
@@ -59,8 +69,10 @@ describe('Type.getTypeName', () => {
 	});
 
 	it('identifies `undefined`', (next) => {
-		expect(Type.getTypeName(undefined, true)).to.equal('undefined');
-		expect(Type.getTypeName(undefined, false)).to.equal('undefined');
+		const undef = ((und) => und)();
+
+		expect(Type.getTypeName(undef, true)).to.equal('undefined');
+		expect(Type.getTypeName(undef, false)).to.equal('undefined');
 
 		next();
 	});
@@ -76,11 +88,11 @@ describe('Type.getTypeName', () => {
 	});
 
 	it('identifies custom objects', (next) => {
-		expect(Type.getTypeName(new foo(), false)).to.equal('object');
-		expect(Type.getTypeName(new foo(), true)).to.equal('foo');
+		expect(Type.getTypeName(new Foo(), false)).to.equal('object');
+		expect(Type.getTypeName(new Foo(), true)).to.equal('Foo');
 
-		expect(Type.getTypeName(new bar(), false)).to.equal('object');
-		expect(Type.getTypeName(new bar(), true)).to.equal('bar');
+		expect(Type.getTypeName(new Bar(), false)).to.equal('object');
+		expect(Type.getTypeName(new Bar(), true)).to.equal('Bar');
 
 		next();
 	});
@@ -95,7 +107,7 @@ describe('Type.getTypeName', () => {
 	it('identifies Object', (next) => {
 		expect(Type.getTypeName({}, true)).to.equal('Object');
 		expect(Type.getTypeName({ foo: 'bar' }, true)).to.equal('Object');
-		
+
 		next();
 	});
 });

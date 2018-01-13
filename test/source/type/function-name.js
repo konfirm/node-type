@@ -2,8 +2,12 @@
 
 const Type = source('type');
 
-function foo() {}
-function bar() {}
+function foo() {
+	//  intentionally left blank
+}
+function bar() {
+	//  intentionally left blank
+}
 
 describe('Type.functionName', () => {
 	it('identifies built-in constructors', (next) => {
@@ -34,23 +38,23 @@ describe('Type.functionName', () => {
 	});
 
 	it('does not trip on non-functions', (next) => {
-		expect(Type.functionName('foo')).to.equal(undefined);
-		expect(Type.functionName(String('foo'))).to.equal(undefined);
+		expect(Type.functionName('foo')).to.be.undefined();
+		expect(Type.functionName(String('foo'))).to.be.undefined();
 
-		expect(Type.functionName(1)).to.equal(undefined);
-		expect(Type.functionName(Math.PI)).to.equal(undefined);
-		expect(Type.functionName(Infinity)).to.equal(undefined);
-		expect(Type.functionName(Number('1'))).to.equal(undefined);
+		expect(Type.functionName(1)).to.be.undefined();
+		expect(Type.functionName(Math.PI)).to.be.undefined();
+		expect(Type.functionName(Infinity)).to.be.undefined();
+		expect(Type.functionName(Number('1'))).to.be.undefined();
 
-		expect(Type.functionName(true)).to.equal(undefined);
-		expect(Type.functionName(false)).to.equal(undefined);
-		expect(Type.functionName(Boolean(1))).to.equal(undefined);
+		expect(Type.functionName(true)).to.be.undefined();
+		expect(Type.functionName(false)).to.be.undefined();
+		expect(Type.functionName(Boolean(1))).to.be.undefined();
 
-		expect(Type.functionName([])).to.equal(undefined);
-		expect(Type.functionName({})).to.equal(undefined);
+		expect(Type.functionName([])).to.be.undefined();
+		expect(Type.functionName({})).to.be.undefined();
 
-		expect(Type.functionName(null)).to.equal(undefined);
-		expect(Type.functionName(undefined)).to.equal(undefined);
+		expect(Type.functionName(null)).to.be.undefined();
+		expect(Type.functionName()).to.be.undefined();
 
 		next();
 	});

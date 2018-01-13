@@ -2,8 +2,12 @@
 
 const Type = source('type');
 
-function foo() {}
-function bar() {}
+function foo() {
+	//  intentionally left blank
+}
+function bar() {
+	//  intentionally left blank
+}
 
 describe('Type.is', () => {
 	it('identifies String', (next) => {
@@ -102,11 +106,11 @@ describe('Type.is', () => {
 		expect(Type.is(foo, new foo())).to.equal(true);
 		expect(Type.is(bar, new foo())).to.equal(false);
 		expect(Type.is('object', new foo())).to.equal(true);
-		
+
 		expect(Type.is(bar, new bar())).to.equal(true);
 		expect(Type.is(foo, new bar())).to.equal(false);
 		expect(Type.is('object', new bar())).to.equal(true);
-		
+
 		next();
 	});
 
@@ -128,7 +132,7 @@ describe('Type.is', () => {
 		expect(Type.is(Object, { foo: 'bar' })).to.equal(true);
 		expect(Type.is('object', { foo: 'bar' })).to.equal(true);
 		expect(Type.is('Object', { foo: 'bar' })).to.equal(true);
-		
+
 		next();
 	});
 });

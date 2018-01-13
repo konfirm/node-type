@@ -2,12 +2,28 @@
 
 const Type = source('type');
 
-function foo() {}
-function bar() {}
+function foo() {
+	//  intentionally left blank
+}
+function bar() {
+	//  intentionally left blank
+}
+
+
+function ProtoFoo() {
+	//  intentionally left blank
+}
+function ProtoBar() {
+	ProtoFoo.call(this);
+}
+ProtoBar.prototype = new ProtoFoo();
+
+class ClassFoo {}
+class ClassBar extends ClassFoo {}
 
 describe('Type.instanceOf', () => {
 	it('identifies String', (next) => {
-		expect(Type.instanceOf(String, 'foo')).to.equal(true); 
+		expect(Type.instanceOf(String, 'foo')).to.equal(true);
 		expect(Type.instanceOf('string', 'foo')).to.equal(false);
 		expect(Type.instanceOf('String', 'foo')).to.equal(true);
 
@@ -81,8 +97,10 @@ describe('Type.instanceOf', () => {
 	});
 
 	it('identifies `undefined`', (next) => {
-		expect(Type.instanceOf('undefined', undefined)).to.equal(true);
-		expect(Type.instanceOf(undefined, undefined)).to.equal(true);
+		const undef = ((und) => und)();
+
+		expect(Type.instanceOf('undefined', undef)).to.equal(true);
+		expect(Type.instanceOf(undef, undef)).to.equal(true);
 
 		next();
 	});
@@ -99,11 +117,17 @@ describe('Type.instanceOf', () => {
 	});
 
 	it('identifies custom objects', (next) => {
-		expect(Type.instanceOf(foo, new foo())).to.equal(true);
-		expect(Type.instanceOf(bar, new foo())).to.equal(false);
+		expect(Type.instanceOf(ProtoFoo, new ProtoFoo())).to.equal(true);
+		expect(Type.instanceOf(ProtoBar, new ProtoFoo())).to.equal(false);
 
-		expect(Type.instanceOf(bar, new bar())).to.equal(true);
-		expect(Type.instanceOf(foo, new bar())).to.equal(false);
+		expect(Type.instanceOf(ProtoBar, new ProtoBar())).to.equal(true);
+		expect(Type.instanceOf(ProtoFoo, new ProtoBar())).to.equal(true);
+
+		expect(Type.instanceOf(ClassFoo, new ClassFoo())).to.equal(true);
+		expect(Type.instanceOf(ClassBar, new ClassFoo())).to.equal(false);
+
+		expect(Type.instanceOf(ClassBar, new ClassBar())).to.equal(true);
+		expect(Type.instanceOf(ClassFoo, new ClassBar())).to.equal(true);
 
 		next();
 	});
@@ -118,7 +142,7 @@ describe('Type.instanceOf', () => {
 	it('identifies Object', (next) => {
 		expect(Type.instanceOf({})).to.equal(false);
 		expect(Type.instanceOf({ foo: 'bar' })).to.equal(false);
-		
+
 		next();
 	});
 
