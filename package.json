@@ -1,6 +1,6 @@
 {
   "name": "@konfirm/type",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Variable type comparison",
   "main": "source/type.js",
   "scripts": {
