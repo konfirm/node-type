@@ -1,5 +1,3 @@
-console.log(this);
-
 class TypeMap {
 	/**
 	 *  List of built-in castable types with both the string representation and
