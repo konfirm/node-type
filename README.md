@@ -1,4 +1,7 @@
 # Type
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/70d2c2373f4f47eab9258ede9428fef5)](https://www.codacy.com/app/konfirm/node-type?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=konfirm/node-type&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/konfirm/node-type.svg?branch=master)](https://travis-ci.org/konfirm/node-type)
+
 Detect variable types and names
 
 ## Getting started

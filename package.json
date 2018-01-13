@@ -15,7 +15,15 @@
     "object name",
     "function name"
   ],
-  "author": "",
+  "homepage": "https://github.com/konfirm/node-type",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/konfirm/node-type.git"
+  },
+  "bugs": {
+    "url": "https://github.com/konfirm/node-type/issues"
+  },
+  "author": "Rogier Spieker <rogier@konfirm.eu>",
   "license": "MIT",
   "devDependencies": {
     "@konfirm/labrat": "^1.1.0",
