@@ -91,16 +91,6 @@ const result = Type.functionName(test);
 console.log(result);  //  helloWorld
 ```
 
-### `<string?>  resolveMapping(type [, begin = undefined])`
-Resolve the predefined mapping of built-in types for the given input, if any.
-
-```js
-const Type = require('@konfirm/type');
-
-console.log(Type.resolveMapping('Array'));  //  array
-console.log(Type.resolveMapping(Array));    //  array
-```
-
 
 ## Licence
 

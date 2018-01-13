@@ -52,11 +52,4 @@ describe('README samples', () => {
 
 		next();
 	});
-
-	it('resolveMapping', (next) => {
-		expect(Type.resolveMapping('Array')).to.equal('array');
-		expect(Type.resolveMapping(Array)).to.equal('array');
-
-		next();
-	});
 });

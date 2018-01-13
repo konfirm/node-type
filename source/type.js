@@ -1,27 +1,6 @@
-const mapping = [
-	{ map: 'null',      types: [ null,      'null' ] },
-	{ map: 'undefined', types: [ undefined, 'undefined' ] },
-	{ map: 'string',    types: [ String,    'String' ] },
-	{ map: 'number',    types: [ Number,    'Number' ] },
-	{ map: 'boolean',   types: [ Boolean,   'Boolean' ] },
-	{ map: 'function',  types: [ Function,  'Function' ] },
-	{ map: 'array',     types: [ Array,     'Array' ]},
-];
+const TypeMap = require('./type-map');
 
 class Type {
-	/**
-	 *  Resolve any predefined mapping for the given type input
-	 *
-	 *  @static
-	 *  @param     {any}  type
-	 *  @param     {any}  [begin=undefined]
-	 *  @return    {any}  mapped
-	 *  @memberof  Type
-	 */
-	static resolveMapping(type, begin) {
-		return mapping.reduce((carry, item) => item.types.indexOf(type) >= 0 ? item.map : carry, begin);
-	}
-
 	/**
 	 *  Get the function name
 	 *
@@ -45,7 +24,7 @@ class Type {
 	 *  @memberof  Type
 	 */
 	static objectName(value) {
-		const check = this.resolveMapping(value);
+		const check = TypeMap.resolve(value);
 
 		if (check && /^null|undefined$/.test(check)) {
 			return check;
@@ -81,7 +60,7 @@ class Type {
 	 *  @memberof  Type
 	 */
 	static instanceOf(type, value) {
-		const check = this.resolveMapping(type, 'object');
+		const check = TypeMap.resolve(type, 'object');
 
 		return this.is(check, value) &&
 			(check !== 'object' || (this.is('string', type) ? this.is(type, value) : value instanceof type));
@@ -96,9 +75,10 @@ class Type {
 	 *  @return    {Boolean}  is type
 	 *  @memberof  Type
 	 */
+	//  eslint-disable-next-line id-length
 	static is(type, value) {
 		if (this.getTypeName(type) === 'string') {
-			const check = this.resolveMapping(type, type);
+			const check = TypeMap.resolve(type, type);
 
 			return this.getTypeName(value, false) === check || this.getTypeName(value, true) === check;
 		}
