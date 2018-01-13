@@ -18,6 +18,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@konfirm/labrat": "^1.1.0"
+    "@konfirm/labrat": "^1.1.0",
+    "eslint-config-strict": "^14.0.1"
   }
 }
