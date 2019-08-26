@@ -4,8 +4,8 @@
   "description": "Variable type comparison",
   "main": "source/type.js",
   "scripts": {
-    "test": "lab -vclr",
-    "test-coverage-html": "lab -clr html -o report.html"
+    "test": "./node_modules/.bin/lab -vclr",
+    "test-coverage-html": "./node_modules/.bin/lab -clr html -o report.html"
   },
   "keywords": [
     "type",
@@ -26,7 +26,7 @@
   "author": "Rogier Spieker <rogier@konfirm.eu>",
   "license": "MIT",
   "devDependencies": {
-    "@konfirm/labrat": "^2.0.1",
+    "@konfirm/labrat": "^2.0.2",
     "eslint-config-strict": "^14.0.1"
   }
 }
